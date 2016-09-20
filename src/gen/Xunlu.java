@@ -1,5 +1,20 @@
 package gen;
 public class Xunlu {
+	class lu {
+		public int	x;
+		public int	y;
+		public lu	previous	= null;
+	}
+
+	class lian {
+		public lu	data;
+		public lian	next	= null;
+		/**
+		 * 1左2右3上4下0出错
+		 */
+		public byte	direction;
+	}
+
 	private int			mapwidth;
 	private int			mapheight;
 	private int			originleft	= 0;
@@ -70,5 +85,38 @@ public class Xunlu {
 	 *            寻路终点的纵坐标。
 	 */
 	public void xunlu(int left, int top) {
+		boolean[][] map = ditu.clone();
+		lian head = new lian();
+		lu one = new lu();
+		one.x = left - 1;
+		one.y = top;
+		head.data = one;
+		head.direction = 1;
+		lian temp = new lian();
+		temp.next = head;
+		head = temp;
+		one = new lu();
+		one.x = left + 1;
+		one.y = top;
+		head.data = one;
+		head.direction = 2;
+		temp = new lian();
+		temp.next = head;
+		head = temp;
+		one = new lu();
+		one.x = left;
+		one.y = top - 1;
+		head.data = one;
+		head.direction = 3;
+		temp = new lian();
+		temp.next = head;
+		head = temp;
+		one = new lu();
+		one.x = left;
+		one.y = top + 1;
+		head.data = one;
+		head.direction = 4;
+		while (head != null) {
+		}
 	}
 }
