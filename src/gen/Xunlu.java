@@ -5,7 +5,7 @@ public class Xunlu {
 		public int	y;
 		public lu	previous	= null;
 	}
-
+	
 	class lian {
 		public lu	data;
 		public lian	next	= null;
@@ -14,13 +14,13 @@ public class Xunlu {
 		 */
 		public byte	direction;
 	}
-
+	
 	private int			mapwidth;
 	private int			mapheight;
 	private int			originleft	= 0;
 	private int			origintop	= 0;
 	private boolean[][]	ditu;
-
+	
 	/**
 	 * 构造函数，创建一个地图大小。
 	 *
@@ -40,7 +40,7 @@ public class Xunlu {
 			}
 		}
 	}
-	
+
 	/**
 	 * 添加一个矩形不可达区域，即返回的寻路路径不经过此区域。
 	 *
@@ -62,7 +62,7 @@ public class Xunlu {
 			}
 		}
 	}
-	
+
 	/**
 	 * 设置寻路起点，未设置起点按坐标（0,0）处理。
 	 *
@@ -75,7 +75,7 @@ public class Xunlu {
 		originleft = left;
 		origintop = top;
 	}
-	
+
 	/**
 	 * 开始寻路。
 	 *
@@ -85,38 +85,271 @@ public class Xunlu {
 	 *            寻路终点的纵坐标。
 	 */
 	public void xunlu(int left, int top) {
+		// 声明
 		boolean[][] map = ditu.clone();
-		lian head = new lian();
-		lu one = new lu();
-		one.x = left - 1;
-		one.y = top;
-		head.data = one;
-		head.direction = 1;
-		lian temp = new lian();
-		temp.next = head;
-		head = temp;
-		one = new lu();
-		one.x = left + 1;
-		one.y = top;
-		head.data = one;
-		head.direction = 2;
-		temp = new lian();
-		temp.next = head;
-		head = temp;
-		one = new lu();
-		one.x = left;
-		one.y = top - 1;
-		head.data = one;
-		head.direction = 3;
-		temp = new lian();
-		temp.next = head;
-		head = temp;
-		one = new lu();
-		one.x = left;
-		one.y = top + 1;
-		head.data = one;
-		head.direction = 4;
-		while (head != null) {
+		lian head;
+		lian htwo;
+		lu one;
+		lian temp;
+		head = new lian();
+		int l;
+		int t;
+		byte d;
+		// 初始化数据
+		l = originleft - 1;
+		t = origintop;
+		d = 1;
+		if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+			map[l][t] = true;
+			one = new lu();
+			one.x = l;
+			one.y = t;
+			head.data = one;
+			head.direction = d;
+			temp = new lian();
+			temp.next = head;
+			head = temp;
 		}
+		// 初始化数据
+		l = originleft + 1;
+		t = origintop;
+		d = 2;
+		if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+			map[l][t] = true;
+			one = new lu();
+			one.x = l;
+			one.y = t;
+			head.data = one;
+			head.direction = d;
+			temp = new lian();
+			temp.next = head;
+			head = temp;
+		}
+		// 初始化数据
+		l = originleft;
+		t = origintop - 1;
+		d = 3;
+		if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+			map[l][t] = true;
+			one = new lu();
+			one.x = l;
+			one.y = t;
+			head.data = one;
+			head.direction = d;
+			temp = new lian();
+			temp.next = head;
+			head = temp;
+		}
+		// 初始化数据
+		l = originleft;
+		t = origintop + 1;
+		d = 4;
+		if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+			map[l][t] = true;
+			one = new lu();
+			one.x = l;
+			one.y = t;
+			head.data = one;
+			head.direction = d;
+			temp = new lian();
+			temp.next = head;
+			head = temp;
+		}
+		temp = head;
+		htwo = new lian();
+		do {
+			while (temp.next != null) {
+				lu te;
+				te = temp.data;
+				if (temp.direction == 1) {
+					// 新建数据
+					l = te.x - 1;
+					t = te.y;
+					d = 1;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x;
+					t = te.y - 1;
+					d = 3;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x;
+					t = te.y + 1;
+					d = 4;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+				} else if (temp.direction == 2) {
+					// 新建数据
+					l = te.x + 1;
+					t = te.y;
+					d = 2;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x;
+					t = te.y + 1;
+					d = 4;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x;
+					t = te.y - 1;
+					d = 3;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+				} else if (temp.direction == 3) {
+					// 新建数据
+					l = te.x;
+					t = te.y - 1;
+					d = 3;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x + 1;
+					t = te.y;
+					d = 2;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x - 1;
+					t = te.y;
+					d = 1;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+				} else if (temp.direction == 4) {
+					// 新建数据
+					l = te.x;
+					t = te.y + 1;
+					d = 4;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x - 1;
+					t = te.y;
+					d = 1;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+					// 新建数据
+					l = te.x + 1;
+					t = te.y;
+					d = 2;
+					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						map[l][t] = true;
+						one = new lu();
+						one.x = l;
+						one.y = t;
+						htwo.data = one;
+						htwo.direction = d;
+						lian tem = new lian();
+						tem.next = htwo;
+						htwo = tem;
+					}
+				}
+				temp = temp.next;
+			}
+			temp = htwo;
+			htwo = new lian();
+		} while (temp.next != null);
 	}
 }
