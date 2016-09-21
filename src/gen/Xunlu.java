@@ -5,7 +5,7 @@ public class Xunlu {
 		public int	y;
 		public lu	previous	= null;
 	}
-	
+
 	class lian {
 		public lu	data;
 		public lian	next	= null;
@@ -14,13 +14,13 @@ public class Xunlu {
 		 */
 		public byte	direction;
 	}
-	
+
 	private int			mapwidth;
 	private int			mapheight;
 	private int			originleft	= 0;
 	private int			origintop	= 0;
 	private boolean[][]	ditu;
-	
+
 	/**
 	 * 构造函数，创建一个地图大小。
 	 *
@@ -40,7 +40,7 @@ public class Xunlu {
 			}
 		}
 	}
-
+	
 	/**
 	 * 添加一个矩形不可达区域，即返回的寻路路径不经过此区域。
 	 *
@@ -62,7 +62,7 @@ public class Xunlu {
 			}
 		}
 	}
-
+	
 	/**
 	 * 设置寻路起点，未设置起点按坐标（0,0）处理。
 	 *
@@ -75,7 +75,7 @@ public class Xunlu {
 		originleft = left;
 		origintop = top;
 	}
-
+	
 	/**
 	 * 开始寻路。
 	 *
@@ -167,10 +167,14 @@ public class Xunlu {
 					t = te.y;
 					d = 1;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -182,10 +186,14 @@ public class Xunlu {
 					t = te.y - 1;
 					d = 3;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -197,10 +205,14 @@ public class Xunlu {
 					t = te.y + 1;
 					d = 4;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -213,10 +225,14 @@ public class Xunlu {
 					t = te.y;
 					d = 2;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -228,10 +244,14 @@ public class Xunlu {
 					t = te.y + 1;
 					d = 4;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -243,10 +263,14 @@ public class Xunlu {
 					t = te.y - 1;
 					d = 3;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -259,10 +283,14 @@ public class Xunlu {
 					t = te.y - 1;
 					d = 3;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -274,10 +302,14 @@ public class Xunlu {
 					t = te.y;
 					d = 2;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -289,10 +321,14 @@ public class Xunlu {
 					t = te.y;
 					d = 1;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -305,10 +341,14 @@ public class Xunlu {
 					t = te.y + 1;
 					d = 4;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -320,10 +360,14 @@ public class Xunlu {
 					t = te.y;
 					d = 1;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();
@@ -335,10 +379,14 @@ public class Xunlu {
 					t = te.y;
 					d = 2;
 					if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+						if (l == left && t == top) {
+							return;
+						}
 						map[l][t] = true;
 						one = new lu();
 						one.x = l;
 						one.y = t;
+						one.previous = te;
 						htwo.data = one;
 						htwo.direction = d;
 						lian tem = new lian();

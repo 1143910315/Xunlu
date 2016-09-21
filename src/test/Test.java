@@ -11,7 +11,12 @@ public class Test {
 		 * aJViewport.add(bJScrollBar); aJFrame.add(aJViewport);
 		 * aJFrame.setVisible(true);
 		 */
-		Xunlu aXunlu = new Xunlu(10, 10);
-		aXunlu.xunlu(10, 10);
+		System.out.println(System.currentTimeMillis());
+		int left = 10000;
+		int top = 10000;
+		Xunlu aXunlu = new Xunlu(left, top);
+		aXunlu.setorigin(0, 0);
+		aXunlu.xunlu(left - 1, top - 1);
+		System.out.println(System.currentTimeMillis());
 	}
 }
