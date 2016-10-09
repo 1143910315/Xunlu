@@ -3,7 +3,7 @@ public class Pxunlu {
 	class xldata {
 		public int		x;
 		public int		y;
-		public xldata	next;
+		public xldata	previous;
 	}
 	
 	class xlhc {
@@ -81,5 +81,36 @@ public class Pxunlu {
 	 *            寻路终点的纵坐标。
 	 */
 	public void xunlu(int left, int top) {
+		// 声明
+		xlhc inactivity = null;
+		xlhc active = null;
+		xldata temp;
+		boolean[][] map = ditu.clone();
+		int l;
+		int t;
+		// 初始化数据
+		l = originleft;
+		t = origintop;
+		if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+			active = new xlhc();
+			temp = new xldata();
+			temp.x = l;
+			temp.y = t;
+			active.data = temp;
+			if (l == left && t == top) {
+				return;
+			}
+		}
+		while (active != null || inactivity != null) {
+			xlhc lian = new xlhc();
+			while (active != null) {
+				temp = active.data;
+				l = temp.x - 1;
+				t = temp.y;
+				if (l >= 0 && t >= 0 && l < mapwidth && t < mapheight && map[l][t] == false) {
+					lian.data = new xldata();
+				}
+			}
+		}
 	}
 }
